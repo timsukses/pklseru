@@ -23,6 +23,9 @@
         <link rel="stylesheet" type="text/css" href="demo.css" />
         <link rel="stylesheet" type="text/css" href="card.css" />
         <link rel="stylesheet" type="text/css" href="pattern.css" />
+        
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
         <!--[if IE]>
           <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
@@ -63,25 +66,58 @@
                                 </div>
                                 <div class="card__copy">
                                     <div class="meta">
-                                        <img class="meta__avatar" src="img/authors/1.png" alt="author01" />
+                                        <img class="meta__avatar" src="elstar01.png" alt="author01" />
                                         <span class="meta__author">Jakub Sobotka</span>
                                         <span class="meta__date">06/29/2015</span>
                                     </div>
                                     <p>Společnost ELSTAR PLUS, s.r.o. byla založena v roce 1995 a je vedena u Krajského obchodního soudu v Brně oddíl C vložka 18165.</p>
                                     <p>Do dnešních dnů je rozmáhající se společností se zahraničními tendencemi. Pod zastřešující značkou ELSTAR PLUS zajišťuje tým školených pracovníků elektrotechnického směru komplexní služby, nákladově efektivní.</p>
-                                    <img class="responsive-img" width="850" src="img/elstar01.png">
+                                    
+                                    <div id="gambar42"></div>
+        <script>
+           
+$(document).ready(function() {
+    var chart1 = new Highcharts.Chart({
+        chart: {
+            renderTo: 'gambar42',
+            type: 'bar'
+        },
+        title: {
+            text: 'Fruit Consumption'
+        },
+        xAxis: {
+            categories: ['Apples', 'Bananas', 'Oranges']
+        },
+        yAxis: {
+            title: {
+                text: 'Fruit eaten'
+            }
+        },
+        series: [{
+            name: 'Jane',
+            data: [1, 0, 4]
+        }, {
+            name: 'John',
+            data: [5, 7, 3]
+        }]
+    });
+});
+
+        </script>
+                                    
+                                    
                                     <p>Časově úsporné a cenově přijatelné řešení v oboru elektromontážních prací jako je, mimo ostatní elektrorozvody také i osvětlení domů, prodejen, učeben, dílenských provozů, sportovišť a spolu s hromosvody pak tyto tvoří veškeré elektrotechnické služby.</p>
                                     <br>
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/elstar/1.png">
+                                                <img class="responsive-img materialboxed" src="1_004.png">
                                             </div>
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/elstar/2.png">
+                                                <img class="responsive-img materialboxed" src="abc.JPG">
                                             </div>
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/elstar/3.png">
+                                                <img class="responsive-img materialboxed" src="cosy01.png">
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +135,7 @@
                                 <circle class="clip" cx="960" cy="250" r="992"></circle>
                             </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath1)" width="1920" height="500" xlink:href="img/b.jpg"></image>
+                            <image clip-path="url(#clipPath1)" width="1920" height="500" xlink:href="euro01.png"></image>
                             </svg>
                             <div class="card__content">
                                 <i class="card__btn-close fa fa-times"></i>
@@ -109,26 +145,26 @@
                                 </div>
                                 <div class="card__copy">
                                     <div class="meta">
-                                        <img class="meta__avatar" src="img/authors/1.png" alt="author01" />
+                                        <img class="meta__avatar" src="elstar01.png" alt="author01" />
                                         <span class="meta__author">Jakub Sobotka</span>
                                         <span class="meta__date">06/01/2015</span>
                                     </div>
                                     <p>Architektonická projekční kancelář Europrojekta, s.r.o. byla založena Ing.arch. Martinem Karešem, Ph.D., MBA  a Ing.arch. Robertem Raisem, Ph.D., MBA v roce 2003 po dlouholeté spolupráci s významným ateliérem pana profesora Ivana Rullera oceněným prezidentem České republiky</p>
                                     <p>Architektonická kancelář si zakládá na vysoce individuálním přístupu ke všem požadavkům klienta. Při zpracování Vašeho projektu, po celou dobu tvorby projektové dokumentace až po její realizaci, budete spolupracovat výhradně s jedním architektem, který Vám bude vždy k dispozici k zodpovězení Vašich otázek týkajících se projektové činnosti související s Vaší stavbou a konzultaci všech Vašich návrhů před zapracováním do projektové dokumentace.</p>
-                                    <img class="responsive-img" width="850" src="img/euro01.png">
-                                    <p>V projekčním ateliéru se o Vás postará kolektiv mladých architektů a projektantů, kteří si doplňují své znalosti a poznatky v oblasti české i zahraniční architektury a stavebnictví studiem odborné literatury a profesních časopisů, formou návštěv přednášek a prostřednictvím pravidelných cest za historickou i soudobou architekturou. Samozřejmou součástí je také sledování novinek týkajících se požadavků na výstavbu a změn v oblasti legislativní, technické, technologické a stavebně-konstrukční.</p>
+                                    <img class="responsive-img" width="850" src="abc.jpg">
+                                    <p>V projekčním ateliéru se o Váshgfghfvhjhhjhh postará kolektiv mladých architektů a projektantů, kteří si doplňují své znalosti a poznatky v oblasti české i zahraniční architektury a stavebnictví studiem odborné literatury a profesních časopisů, formou návštěv přednášek a prostřednictvím pravidelných cest za historickou i soudobou architekturou. Samozřejmou součástí je také sledování novinek týkajících se požadavků na výstavbu a změn v oblasti legislativní, technické, technologické a stavebně-konstrukční.</p>
                                     <br>
 
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/euro/1.png">
+                                                <img class="responsive-img materialboxed" src="1_004.png">
                                             </div>
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/euro/5.png">
+                                                <img class="responsive-img materialboxed" src="abc.JPG">
                                             </div>
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/euro/6.png">
+                                                <img class="responsive-img materialboxed" src="euro01.png">
                                             </div>
                                         </div>
                                     </div>
@@ -136,13 +172,13 @@
                                     <div class="row">
                                         <div class="col s12">
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/euro/4.png">
+                                                <img class="responsive-img materialboxed" src="euro01.png">
                                             </div>
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/euro/2.png">
+                                                <img class="responsive-img materialboxed" src="1_004.png">
                                             </div>
                                             <div class="col s4">
-                                                <img class="responsive-img materialboxed" src="img/euro/3.png">
+                                                <img class="responsive-img materialboxed" src="abc.JPG">
                                             </div>
                                         </div>
                                     </div>
@@ -159,7 +195,7 @@
                                 <circle class="clip" cx="960" cy="250" r="992"></circle>
                             </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath1)" width="1920" height="500" xlink:href="img/c.jpg"></image>
+                            <image clip-path="url(#clipPath1)" width="1920" height="500" xlink:href="1_004.png"></image>
                             </svg>
                             <div class="card__content">
                                 <i class="card__btn-close fa fa-times"></i>
@@ -169,19 +205,19 @@
                                 </div>
                                 <div class="card__copy">
                                     <div class="meta">
-                                        <img class="meta__avatar" src="img/authors/1.png" alt="author01" />
+                                        <img class="meta__avatar" src="abc.JPG" alt="author01" />
                                         <span class="meta__author">Jakub Sobotka</span>
                                         <span class="meta__date">05/15/2015</span>
                                     </div>
                                     <p>Prostorný apartmán se nachází ve 3. patře budovy z konce 19. století v samotném centru města Brna.</p>
                                     <p>Je zařízen v industriálním stylu, který je citlivě kombinován s původními prvky historické stavby. Apartmán je ideální pro návštěvníky, kteří chtějí zažít atmosféru pulsujícího městského centra, ale současně hledají klidné místo pro ubytování. </p>
-                                    <img class="responsive-img" width="850" src="img/cosy01.png">
+                                    <img class="responsive-img" width="850" src="cosy01.png">
                                     <p>Přestože je apartmán umístěn v centrální části města, nachází se na málo rušné ulici, která je součástí pěší zóny s omezeným vjezdem vozidel. Z okna umístěného v secesním arkýři můžete pozorovat život na centrálním náměstí Svobody - blíže dění v samotném srdci města už být nemůžete!</p>
                                     <p>Jen pár kroků od apartmánu najdete řadu kvalitních restaurací, kaváren, vyhlášených klubů a míst, kam chodí místní na skleničku či debatovat nad oroseným půllitrem piva.  Pro ranní šálek kávy a noviny můžete „zaskočit“ klidně jen pantoflích. Stačí sjet dolů výtahem přímo do nejbližší kavárny, která je součastí domu, ve kterém budete bydlet. </p>
                                     <br>
                                     <div class="row">
                                         <div class="col s12">
-                                            <img class="responsive-img" src="img/cosy/1.png">
+                                            <img class="responsive-img" src="cosy01.png">
                                         </div>
                                     </div>
                                 </div>
