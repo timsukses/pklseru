@@ -1,0 +1,2186 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        <!-- Basic Page Needs
+        ================================================== -->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TEs Modal</title>
+
+        <!-- Mobile Specific Metas
+        ================================================== -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/png" href="img/favicon.png"/>
+
+        <!-- CSS
+        ================================================== -->       
+        <!-- Bootstrap css file-->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font awesome css file-->
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <!-- Superslide css file-->
+        <link rel="stylesheet" href="css/superslides.css">
+        <!-- Slick slider css file -->
+        <link href="css/slick.css" rel="stylesheet"> 
+        <!-- smooth animate css file -->
+        <link rel="stylesheet" href="css/animate.css">  
+        <!-- Elastic grid css file -->
+        <link rel="stylesheet" href="css/elastic_grid.css"> 
+        <!-- Circle counter cdn css file -->
+        <link rel='stylesheet prefetch' href='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/css/jquery.circliful.css'>    
+        <!-- Default Theme css file -->
+        <link id="orginal" href="css/themes/default-theme.css" rel="stylesheet">
+        <!-- Main structure css file -->
+        <link href="style.css" rel="stylesheet">
+
+        <!-- Google fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE ]9>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+
+
+        <!--CSS modal dan button-->
+        <style type="text/css">
+            .modal-backdrop.in {
+                opacity: 0.8;
+            }
+
+            .modal-body {
+                    background-color: #2DA2C8;
+                max-height: calc(100vh - 150px);
+                overflow-y: auto;
+            }
+
+            .modal-dialog {
+                margin:0 auto;
+                width:60%;
+            }
+            .modal-content{
+                border-radius: 0;
+                
+            }
+           
+            .modal-title
+            {
+                text-transform: uppercase;
+            }
+
+            .kotak{
+                border: 2px solid #CCC;
+                border-radius: 5px;
+                text-align: center;
+                display:inline-block;
+            }
+
+            /* Global Button Styles */
+            a.animated-button:link, a.animated-button:visited {
+                position: relative;
+                display: block;
+                padding: 14px 15px;
+                color: #2DA2C8;
+                font-size:14px;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                overflow: hidden;
+                letter-spacing: .08em;
+                border-radius: 0;
+
+                -webkit-transition: all 1s ease;
+                -moz-transition: all 1s ease;
+                -o-transition: all 1s ease;
+                transition: all 1s ease;
+            }
+            a.animated-button:link:after, a.animated-button:visited:after {
+                content: "";
+                position: absolute;
+                height: 0%;
+                left: 50%;
+                top: 50%;
+                width: 150%;
+                z-index: -1;
+                -webkit-transition: all 0.75s ease 0s;
+                -moz-transition: all 0.75s ease 0s;
+                -o-transition: all 0.75s ease 0s;
+                transition: all 0.75s ease 0s;
+            }
+            a.animated-button:link:hover, a.animated-button:visited:hover {
+                color: whitesmoke;
+
+            }
+            a.animated-button:link:hover:after, a.animated-button:visited:hover:after {
+                height: 450%;
+            }
+            a.animated-button:link, a.animated-button:visited {
+                position: relative;
+                display: block;
+
+                padding: 14px 15px;
+                color: #2DA2C8;
+                font-size:14px;
+                border-radius: 0;
+                font-weight: bold;
+                text-align: center;
+                text-decoration: none;
+                text-transform: uppercase;
+                overflow: hidden;
+                letter-spacing: .08em;
+                -webkit-transition: all 1s ease;
+                -moz-transition: all 1s ease;
+                -o-transition: all 1s ease;
+                transition: all 1s ease;
+            }
+
+            /* Thar Buttons */
+
+            a.animated-button.thar-three {
+                color: #2DA2C8;
+                cursor: pointer;
+                display: block;
+                position: relative;
+                border: 2px solid #2DA2C8;
+                transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1)0s;
+            }
+            a.animated-button.thar-three:hover {
+                color: whitesmoke !important;
+                background-color: transparent;
+
+            }
+            a.animated-button.thar-three:hover:before {
+                left: 0%;
+                right: auto;
+                width: 100%;
+            }
+            a.animated-button.thar-three:before {
+                display: block;
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                height: 100%;
+                width: 0px;
+                z-index: -1;
+                content: '';
+                color: whitesmoke !important;
+                background: #2DA2C8;
+                transition: all 0.4s cubic-bezier(0.42, 0, 0.58, 1) 0s;
+            }
+
+        </style>
+
+        <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+        <script type="text/javascript">
+            $(function () {
+//chart12
+                // Build the chart
+
+                $('#chart12').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                    title: {
+                        text: 'Persentase Pemilik Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Jenis Kelamin di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015',
+                        align: 'center'
+
+                    },
+                    tooltip: {
+                        pointFormat: ' <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            dataLabels: {
+                                enabled: true,
+                                distance: -50,
+                                style: {
+                                    fontWeight: 'bold',
+                                    color: 'white',
+                                    textShadow: '0px 1px 2px black'
+                                }
+                            },
+                            startAngle: -90,
+                            endAngle: 90,
+                            center: ['50%', '75%']
+                        }
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            type: 'pie',
+                            name: '',
+                            innerSize: '50%',
+                            data: [
+                                ['Laki-laki', 99.00],
+                                ['Perempuan', 1.00]
+
+                            ]
+                        }]
+                });
+//chart13
+
+                $('#chart13').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Persentase Pemilik Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Kelompok Umur di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Persentase Pemilik Unit Usaha'
+                        }
+                    },
+                    legend: {
+                        reversed: true},
+                    tooltip: {
+                        pointFormat: ' <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        series: {
+                            stacking: 'normal'
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: '>64th',
+                            data: [1]
+                        }, {
+                            name: '55-64th',
+                            data: [14]
+                        }, {
+                            name: '45-54th',
+                            data: [25]
+                        }, {
+                            name: '35-44th',
+                            data: [38]
+                        }, {
+                            name: '25-34th',
+                            data: [18]
+                        }, {name: '15-24th',
+                            data: [4]
+
+                        }]
+                });
+                //chart14
+                $('#chart14').highcharts({
+                    chart: {
+                        type: 'pie',
+                        options3d: {
+                            enabled: true,
+                            alpha: 45
+                        }
+                    },
+                    title: {
+                        text: 'Persentase Pemilik Unit  Usaha Rumah Tangga Perikanan Tangkap Laut'
+                    },
+                    subtitle: {
+                        text: 'Menurut Tingkat Pendidikan yang Ditamatkan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    plotOptions: {
+                        pie: {
+                            innerSize: 100,
+                            depth: 45
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            data: [
+                                ['Tidak/Belum Pernah Sekolah', 18],
+                                ['Tidak/Belum Tamat SD', 61],
+                                ['SD', 17],
+                                ['SLTP', 3],
+                                ['SLTA dan ke atas', 1]
+                            ]
+                        }]
+                });
+//chart15
+
+                $('#chart15').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+
+                    },
+                    title: {
+                        text: 'Persentase Pemilik Unit  Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Frekuensi Penyuluhan dari Pemerintah di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: ' <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                },
+                                connectorColor: 'silver'
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            data: [
+                                {name: "0", y: 88},
+                                {name: "1", y: 6},
+                                {name: "2", y: 3},
+                                {name: "3", y: 1},
+                                {name: "4+", y: 2}
+
+                            ]
+                        }]
+                });
+//chart16
+                $('#chart16').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Pemilik Unit  Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Frekuensi Pengalaman Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "<9",
+                                    y: 22,
+                                    sliced: true
+                                }, {
+                                    name: "9-25",
+                                    y: 56,
+                                    sliced: true
+                                }, {
+                                    name: ">25",
+                                    y: 22,
+                                    sliced: true
+                                }]
+                        }]
+                });
+                //chart211
+                $('#chart211').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Persentase Responden Unit Usaha Menurut Status Kepemilikan SIUP dan Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Suranenggala', 'Kapetakan', 'Gunungjati', 'Mundu', 'Pangenan', 'Astanajapura', 'Gebang', 'Babakan', 'Losari'],
+                        title: {
+                            text: 'Kecamatan'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Kepemilikan SIUP (persentase)',
+                            align: 'high'
+                        },
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        borderWidth: 1,
+                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Tidak Memiliki SIUP',
+                            data: [90, 99, 88, 89, 98, 100, 92, 100, 91]
+
+                        }, {
+                            name: 'Memiliki SIUP',
+                            data: [10, 1, 12, 11, 2, 0, 8, 0, 9]
+                        }]
+                });
+                //chart212
+                $('#chart212').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Besaran Biaya SIUP yang Dikeluarkan oleh Responden Unit Usaha Perikanan Tangkap Laut Menurut Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: [
+                            'Losari',
+                            'Babakan',
+                            'Gebang',
+                            'Astanajapura',
+                            'Pangenan',
+                            'Mundu',
+                            'Gunungjati',
+                            'Kapetakan',
+                            'Suranenggala'
+                        ],
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Biaya SIUP (000 Rupiah)'
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.2,
+                            borderWidth: 0
+                            , dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Rata-rata',
+                            data: [84, 0, 132.5517, 0, 100, 65.3333, 33.5909, 30, 55]
+
+                        }, {
+                            name: 'Biaya Terendah',
+                            data: [5, 0, 12, 0, 100, 15, 7, 30, 10]
+
+                        }, {
+                            name: 'Biaya Tertinggi',
+                            data: [500, 0, 1000, 0, 100, 300, 50, 30, 200]
+
+                        }]
+                });
+                //chart221
+                $('#chart221').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Sumber Modal di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Modal Sendiri",
+                                    y: 78.3
+                                }, {
+                                    name: "Modal Pinjaman",
+                                    y: 20,
+                                    sliced: true
+                                }, {
+                                    name: "Bantuan",
+                                    y: 1.7
+                                }]
+                        }]
+                });
+                //chart231
+                $('#chart231').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Sumber Modal di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Lembaga Keuangan Formal",
+                                    y: 8.7
+                                }, {
+                                    name: "Diluar Lembaga Keuangan Formal ",
+                                    y: 77,
+                                    sliced: true
+                                }, {
+                                    name: "Lembaga Keuangan Formal dan Diluar Lembaga Keuangan Formal",
+                                    y: 14.3
+                                }]
+                        }]
+                });
+//chart232
+                var colors = Highcharts.getOptions().colors,
+                        categories = ['Nasabah Bank', 'Bukan Nasabah Bank'],
+                        data = [{
+                                y: 16.9,
+                                color: colors[0], drilldown: {
+                                    name: 'Nasabah',
+                                    categories: ['Nasabah'],
+                                    data: [16.9],
+                                    color: colors[1]
+                                }
+
+                            }, {
+                                y: 83.1,
+                                color: colors[1],
+                                drilldown: {
+                                    name: 'Alasan',
+                                    categories: ['Pendapatan Rendah', 'Prosedur Rumit', 'Kurang Informasi', 'Biaya Administrasi Tinggi', 'Lokasi Jauh', 'Lainnya'],
+                                    data: [60.6, 6.1, 11.6, 1.1, 1.1, 2.6],
+                                    color: colors[1]
+                                }
+
+                            }],
+                        Nasabah = [],
+                        Alasan = [],
+                        i,
+                        j,
+                        dataLen = data.length,
+                        drillDataLen,
+                        brightness;
+
+
+                // Build the data arrays
+                for (i = 0; i < dataLen; i += 1) {
+
+                    // add browser data
+                    Nasabah.push({
+                        name: categories[i],
+                        y: data[i].y,
+                        color: data[i].color
+                    });
+
+                    // add version data
+                    drillDataLen = data[i].drilldown.data.length;
+                    for (j = 0; j < drillDataLen; j += 1) {
+                        brightness = 0.2 - (j / drillDataLen) / 5;
+                        Alasan.push({
+                            name: data[i].drilldown.categories[j],
+                            y: data[i].drilldown.data[j],
+                            color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                        });
+                    }
+                }
+
+                // Create the chart
+                $('#chart232').highcharts({
+                    chart: {
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Tidak Menjadi Nasabah Bank Menurut Alasan Utamanya di Kabupaten Cirebon Provinsi Jawa Barat  Tahun 2015'
+                    },
+                    plotOptions: {
+                        pie: {
+                            shadow: false,
+                            center: ['50%', '50%']
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: '%'
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Apakah Menjadi Nasabah',
+                            data: Nasabah,
+                            size: '60%',
+                            dataLabels: {
+                                formatter: function () {
+                                    return this.y > 5 ? this.point.name : null;
+                                },
+                                color: 'white',
+                                distance: -30
+                            }
+                        }, {
+                            name: 'Alasan',
+                            data: Alasan,
+                            size: '80%',
+                            innerSize: '60%',
+                            dataLabels: {
+                                formatter: function () {
+                                    // display only if larger than 1
+                                    return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
+                                }
+                            }
+                        }]
+                });
+                //chart233
+
+                var colors = Highcharts.getOptions().colors,
+                        categories = ['Meminjam di Bank', 'Tidak Meminjam di Bank'],
+                        data2 = [{
+                                y: 45.3,
+                                color: colors[0], drilldown: {
+                                    name: 'Meminjam',
+                                    categories: ['Meminjam'],
+                                    data: [45.3],
+                                    color: colors[1]
+                                }
+
+                            }, {
+                                y: 54.7,
+                                color: colors[1],
+                                drilldown: {
+                                    name: 'Alasan2',
+                                    categories: ['Bunga Tinggi', 'Pendapatan Rendah', 'Lokasi Jauh', 'Prosedur Rumit', 'Kurang Informasi', 'Tidak Ada Jaminan', 'Merasa Tidak Perlu', 'Lainnya'],
+                                    data: [1.3, 17.4, 0.4, 5.0, 5.7, 6.9, 17.6, 0.4],
+                                    color: colors[1]
+                                }
+
+                            }],
+                        Meminjam = [],
+                        Alasan2 = [],
+                        i,
+                        j,
+                        dataLen2 = data2.length,
+                        drillDataLen2,
+                        brightness;
+
+
+                // Build the data arrays
+                for (i = 0; i < dataLen2; i += 1) {
+
+                    // add browser data
+                    Meminjam.push({
+                        name: categories[i],
+                        y: data2[i].y,
+                        color: data2[i].color
+                    });
+
+                    // add version data
+                    drillDataLen2 = data2[i].drilldown.data.length;
+                    for (j = 0; j < drillDataLen2; j += 1) {
+                        brightness = 0.2 - (j / drillDataLen2) / 5;
+                        Alasan2.push({
+                            name: data2[i].drilldown.categories[j],
+                            y: data2[i].drilldown.data[j],
+                            color: Highcharts.Color(data2[i].color).brighten(brightness).get()
+                        });
+                    }
+                }
+
+                // Create the chart
+                $('#chart233').highcharts({
+                    chart: {
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Tidak Melakukan Peminjaman di Bank Menurut Alasan Utama di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    plotOptions: {
+                        pie: {
+                            shadow: false,
+                            center: ['50%', '50%']
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: '%'
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Apakah Menjadi Nasabah',
+                            data: Meminjam,
+                            size: '60%',
+                            dataLabels: {
+                                formatter: function () {
+                                    return this.y > 5 ? this.point.name : null;
+                                },
+                                color: 'white',
+                                distance: -30
+                            }
+                        }, {
+                            name: 'Alasan',
+                            data: Alasan2,
+                            size: '80%',
+                            innerSize: '60%',
+                            dataLabels: {
+                                formatter: function () {
+                                    // display only if larger than 1
+                                    return this.y > 1 ? '<b>' + this.point.name + ':</b> ' + this.y + '%' : null;
+                                }
+                            }
+                        }]
+                });
+                //chart234
+                $('#chart234').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Tidak Menjadi Anggota Koperasi Menurut Alasan Utamanya di Kabupaten Cirebon Provinsi Jawa Barat  Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Koperasi",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Tidak ada koperasi di desa",
+                                    y: 53
+                                }, {
+                                    name: "Prosedur Rumit",
+                                    y: 8,
+                                    sliced: true
+                                }, {
+                                    name: "Tidak Sesuai dengan Kebutuhan Usaha",
+                                    y: 8
+                                }, {
+                                    name: "Lokasi Koperasi Sulit Dijangkau",
+                                    y: 3
+                                }, {
+                                    name: "Syarat Berat",
+                                    y: 7
+                                }, {
+                                    name: "Lainnya",
+                                    y: 21
+                                }]
+                        }]
+                });
+                //chart235
+                $('#chart235').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Tidak Menjadi Anggota KUB Menurut Alasan Utamanya di Kabupaten Cirebon Provinsi Jawa Barat  Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "KUB",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Belum ada KUB",
+                                    y: 48.1,
+                                    sliced: true
+                                }, {
+                                    name: "Tidak Merasa Perlu",
+                                    y: 15.8,
+                                    sliced: true
+                                }, {
+                                    name: "Kurang informasi manfaat KUB",
+                                    y: 17.6,
+                                    sliced: true
+                                }, {
+                                    name: "Lainnya",
+                                    y: 18.5,
+                                    sliced: true
+                                }]
+                        }]
+                });
+                //chart236
+
+                $('#chart236').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Melakukan Peminjaman di Luar Lembaga Keuangan Formal Menurut Bentuk Pengembalian Modal di Kabupaten Cirebon Provinsi Jawa Barat  Bulan Maret Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Bentuk Pengembalian Modal",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Hasil Tangkapan",
+                                    y: 11,
+                                    sliced: true
+                                }, {
+                                    name: "Uang",
+                                    y: 89,
+                                    sliced: true
+                                }]
+                        }]
+                });
+                //chart241
+                $('#chart241').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Jumlah Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Pemberi Sosialisasi Aksesibilitas Modal dan Frekuensinya di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['KKP', 'Bank']
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Jumlah Sosialisasi'
+                        },
+                        stackLabels: {
+                            enabled: true,
+                            style: {
+                                fontWeight: 'bold',
+                                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            }
+                        }
+                    },
+                    legend: {
+                        align: 'right',
+                        x: -30,
+                        verticalAlign: 'top',
+                        y: 25,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            return '<b>' + this.x + '</b><br/>' +
+                                    this.series.name + ': ' + this.y + '<br/>' +
+                                    'Total: ' + this.point.stackTotal;
+                        }
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'normal',
+                            dataLabels: {
+                                enabled: true,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                style: {
+                                    textShadow: '0 0 3px black'
+                                }
+                            }
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: '1-3',
+                            data: [26, 71]
+                        }, {
+                            name: '>3',
+                            data: [0, 8]
+                        }]
+                });
+                //chart311
+                $('#chart311').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Penggunaan Sarana Transportasi Melaut Di Kabupaten Cirebon Provinsi Jawa Barat Bulan Maret Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '<b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Sarana Transportasi",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Kapal/perahu",
+                                    y: 92,
+                                    sliced: true
+                                }, {
+                                    name: "Tanpa Perahu",
+                                    y: 8,
+                                    sliced: true
+                                }]
+                        }]
+                });
+                //chart312
+                $('#chart312').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Persentase unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Menggunakan Kapal Motor* Menurut Tenaga Mesin Kapal dan Volume Produksi di Kabupaten Cirebon Provinsi Jawa Barat Bulan MaretTahun  2015'
+                    },
+                    xAxis: {
+                        categories: ['<2PK', '44-100PK']
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Volume Produksi'
+                        },
+                        stackLabels: {
+                            enabled: true,
+                            style: {
+                                fontWeight: 'bold',
+                                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            }
+                        }
+                    },
+                    legend: {
+                        align: 'right',
+                        x: -30,
+                        verticalAlign: 'top',
+                        y: 25,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent',
+                            dataLabels: {
+                                enabled: true,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                style: {
+                                    textShadow: '0 0 3px black'
+                                }
+                            }
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: '<=30KG',
+                            data: [100, 0]
+                        }, {
+                            name: '30-400KG',
+                            data: [3.9, 96.1]
+                        }]
+                });
+                //chart313
+                $('#chart313').highcharts({
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: 'Jumlah Unit Usaha Rumah Tangga Perikanan Tangkap Laut yang Menggunakan Perahu Motor Tempel* Menurut Tenaga Mesin Kapal dan Volume Produksi di Kabupaten Cirebon Provinsi Jawa Barat Bulan Maret Tahun  2015'
+                    },
+                    xAxis: {
+                        categories: ['<10PK', '10-24PK', '>=24']
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Volume Produksi'
+                        },
+                        stackLabels: {
+                            enabled: true,
+                            style: {
+                                fontWeight: 'bold',
+                                color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                            }
+                        }
+                    },
+                    legend: {
+                        align: 'right',
+                        x: -30,
+                        verticalAlign: 'top',
+                        y: 25,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                        borderColor: '#CCC',
+                        borderWidth: 1,
+                        shadow: false
+                    },
+                    plotOptions: {
+                        column: {
+                            stacking: 'percent',
+                            dataLabels: {
+                                enabled: true,
+                                color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                                style: {
+                                    textShadow: '0 0 3px black'
+                                }
+                            }
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: '<=4KG',
+                            data: [26.4, 50.7, 22.9]
+                        }, {name: '4-33KG',
+                            data: [23, 45.1, 31.9]
+                        }, {
+                            name: '>=33KG',
+                            data: [1.6, 27.6, 70.8]
+                        }]
+                });
+                //chart314
+                $('#chart314').highcharts({
+                    chart: {
+                        zoomType: 'xy'
+                    },
+                    title: {
+                        text: 'Jumlah Produksi Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Penggunaan Sarana Transportasi Melaut di Kabupaten Cirebon Provinsi Jawa Barat Bulan Maret Tahun  2015'
+
+                    },
+                    xAxis: [{
+                            categories: ['Kapal/Perahu', 'Tanpa Perahu'],
+                            crosshair: true
+                        }],
+                    yAxis: [{// Primary yAxis
+                            labels: {
+                                format: '{value}kg',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            },
+                            title: {
+                                text: 'Volume',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            }
+                        }, {// Secondary yAxis
+                            title: {
+                                text: 'Nilai',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            labels: {
+                                format: '{value} Rp',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            opposite: true
+                        }],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        x: 120,
+                        verticalAlign: 'top',
+                        y: 100,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Volume',
+                            type: 'column',
+                            yAxis: 1,
+                            data: [170130.990, 2322.372],
+                            tooltip: {
+                                valueSuffix: ' kg'
+                            }
+
+                        }, {
+                            name: 'Nilai',
+                            type: 'column',
+                            data: [3108300.962, 17473.254],
+                            tooltip: {
+                                valueSuffix: 'Rp'
+                            }
+                        }]
+                });
+                //chart315
+                $('#chart315').highcharts({
+                    chart: {
+                        zoomType: 'xy'
+                    },
+                    title: {
+                        text: 'Jumlah Produksi Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Jenis Kapal yang Digunakan di Kabupaten Cirebon Provinsi Jawa Barat Bulan Maret Tahun  2015'
+                    },
+                    xAxis: [{
+                            categories: ['Kapal Motor', 'Perahu Motor Tempel', 'Perahu Tanpa Motor'],
+                            crosshair: true
+                        }],
+                    yAxis: [{// Primary yAxis
+                            labels: {
+                                format: '{value}Kg',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            },
+                            title: {
+                                text: 'Volume',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            }
+                        }, {// Secondary yAxis
+                            title: {
+                                text: 'Nilai',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            labels: {
+                                format: '{value} Rp',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            opposite: true
+                        }],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        x: 120,
+                        verticalAlign: 'top',
+                        y: 100,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Volume',
+                            type: 'column',
+                            yAxis: 1,
+                            data: [4893.657, 164772.541, 464.792],
+                            tooltip: {
+                                valueSuffix: ' kg'
+                            }
+
+                        }, {
+                            name: 'Nilai',
+                            type: 'column',
+                            data: [318286.617, 2785721.934, 4292.410],
+                            tooltip: {
+                                valueSuffix: 'Rp'
+                            }
+                        }]
+                });
+                //chart321
+                $('#chart321').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Jumlah Alat Tangkap berdasarkan Jenis Alat Tangkap Usaha Rumah Tangga Perikanan Tangkap Laut di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Pukat Tarik', 'Pukat Kantong', 'Pukat Cincin', 'Jaring Insang', 'Jaring Angkat', 'Pancing', 'Perangkap', 'Alat Pengumpul Rumput Laut,Penangkap Kerang, Teripang, dan Kepiting'],
+                        title: {
+                            text: 'Jenis Alat Tangkap'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Jumlah',
+                            align: 'high'
+                        },
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 80,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            data: [3222, 3956, 1558, 62185, 3542, 921154, 193059, 21958]
+
+                        }]
+                });
+                //chart322
+                $('#chart322').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Jumlah Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Status Penggunaan Alat Bantu/Sarana Pendukung yang Digunakan di Kabupaten Cirebon ProvinsiJawa Barat Bulan MaretTahun  2015'
+                    },
+                    xAxis: {
+                        categories: ['GPS/Peta Laut/Kompas Magnet', 'Echo Sounder/Fish Finder/Sonar', 'Line Hauler/Winch/Power Block', 'Rumpon', 'Rumah Ikan', 'Lampu', 'Lainnya'],
+                        title: {
+                            text: 'Alat Bantu'
+                        }
+                    }, yAxis: {
+                        min: 0
+                    },
+                    legend: {
+                        reversed: true
+                    },
+                    plotOptions: {
+                        series: {
+                            stacking: 'normal'
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Menggunakan',
+                            data: [205, 16, 134, 53, 1, 271, 178]
+                        }, {
+                            name: 'Tidak Menggunakan',
+                            data: [3663, 3862, 3734, 3815, 3867, 3597, 3690]
+                        }]
+                });
+                //chart3411
+                $('#chart3411').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Persentase Responden Unit Usaha Perikanan Tangkap Laut yang Mengeluarkan Biaya Tambat Kapal Menurut Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Suranenggala', 'Kapetakan', 'Gunungjati', 'Mundu', 'Pangenan', 'Astanajapura', 'Gebang', 'Babakan', 'Losari'],
+                        title: {
+                            text: 'Kecamatan'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: '',
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 80,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Tidak Mengeluarkan Biaya Tambat Kapal',
+                            data: [96, 92, 91, 76, 88, 100, 67, 100, 70]
+                        }, {
+                            name: 'Mengeluarkan Biaya Tambat Kapal',
+                            data: [4, 8, 9, 24, 12, 0, 33, 30]
+                        }]
+                });
+                //chart3412
+                $('#chart3412').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Besaran Biaya Tambat Kapal/Perahu yang Dikeluarkan oleh Unit Usaha Perikanan Tangkap Laut Menurut Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Suranenggala', 'Kapetakan', 'Gunungjati', 'Mundu', 'Pangenan', 'Astanajapura', 'Gebang', 'Babakan', 'Losari'],
+                        title: {
+                            text: 'Kecamatan'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: '',
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 80,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Biaya Tertinggi',
+                            data: [80, 3, 40, 200, 1, 0, 100, 0, 553]
+                        }, {
+                            name: 'Biaya Terendah',
+                            data: [1, 0.056, 0.095, 0.1, 0.089, 0, 0.017, 0, 0.005]
+                        }, {
+                            name: 'Rata-rata',
+                            data: [24.75, 0.948857, 2.726053, 22.11093, 0.3744, 0, 5.199301, 0, 15.90149]
+                        }]
+                });
+                //chart3421
+                $('#chart3421').highcharts({
+                    title: {
+                        text: 'Persentase Responden Unit Usaha Perikanan Tangkap Laut yang mengeluarkan Biaya Keamanan Menurut Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Gebang', 'Mundu', 'Gunungjati', 'Kapetakan', 'Suranenggala']
+                    },
+                    labels: {
+                        items: [{
+                                html: 'Status Pengeluaran Biaya Keamanan',
+                                style: {
+                                    left: '50px',
+                                    top: '18px',
+                                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                                }
+                            }]
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            type: 'column',
+                            name: 'Mengeluarkan Biaya Keamanan',
+                            data: [39, 11, 2, 1, 1]
+                        }, {
+                            type: 'pie',
+                            data: [{
+                                    name: 'Tidak Mengeluarkan Biaya Keamanan',
+                                    y: 96,
+                                    color: Highcharts.getOptions().colors[1] // Jane's color
+                                }, {
+                                    name: 'Mengeluarkan Biaya Keamanan',
+                                    y: 4,
+                                    color: Highcharts.getOptions().colors[0] // John's color
+                                }],
+                            center: [100, 80],
+                            size: 100,
+                            showInLegend: false,
+                            dataLabels: {
+                                enabled: false
+                            }
+                        }]
+                });
+                //chart3422
+                //chart3431
+
+                $('#chart3431').highcharts({
+                    title: {
+                        text: 'Persentase Responden Unit Usaha Perikanan Tangkap Laut yang Mengeluarkan Biaya Ransum Menurut Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Losari', 'Babakan', 'Gebang', 'Astanajapura', 'Pangenan', 'Mundu', 'Gunungjati', 'Kapetakan', 'Suranenggala']
+                    },
+                    labels: {
+                        items: [{
+                                style: {
+                                    left: '50px',
+                                    top: '18px',
+                                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                                }
+                            }]
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            type: 'column',
+                            name: 'Mengeluarkan Biaya Ransum',
+                            data: [119, 1, 371, 5, 83, 187, 209, 167, 101]
+                        }, {
+                            type: 'pie',
+                            data: [{
+                                    name: 'Tidak Mengeluarkan Biaya Ransum',
+                                    y: 1.4,
+                                    color: Highcharts.getOptions().colors[1] // Jane's color
+                                }, {
+                                    name: 'Mengeluarkan Biaya Ransum',
+                                    y: 98.6,
+                                    color: Highcharts.getOptions().colors[0] // John's color
+                                }],
+                            center: [100, 80],
+                            size: 100,
+                            showInLegend: false,
+                            dataLabels: {
+                                enabled: false
+                            }
+                        }]
+                });
+                //chart3432
+                $('#chart3432').highcharts({
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: 'Besaran Biaya Ransum yang Dikeluarkan oleh Unit Usaha Perikanan Tangkap Laut Menurut Kecamatan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: {
+                        categories: ['Losari', 'Babakan', 'Gebang', 'Astanajapura', 'Pangenan', 'Mundu', 'Gunungjati', 'Kapetakan', 'Suranenggala'],
+                        title: {
+                            text: 'Kecamatan'
+                        }
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Biaya (000 Rupiah)',
+                            align: 'high'
+                        },
+                        labels: {
+                            overflow: 'justify'
+                        }
+                    },
+                    tooltip: {
+                        valueSuffix: ' millions'
+                    },
+                    plotOptions: {
+                        bar: {
+                            dataLabels: {
+                                enabled: true
+                            }
+                        }
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'right',
+                        verticalAlign: 'top',
+                        x: -40,
+                        y: 80,
+                        floating: true,
+                        borderWidth: 1,
+                        backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                        shadow: true
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Biaya Tertinggi',
+                            data: [600, 50, 5344, 15, 400, 1635, 1300, 520, 150]
+                        }, {
+                            name: 'Biaya Terendah',
+                            data: [2, 50, 2, 13, 2, 2, 3, 3.5, 3]
+                        }, {
+                            name: 'Rata-rata',
+                            data: [45.04, 50, 293.25, 14.6, 42.81, 120.36, 37.44, 62.64, 29.89]
+                        }]
+                });
+//chart41
+                $('#chart41').highcharts({
+                    chart: {
+                        zoomType: 'xy'
+                    },
+                    title: {
+                        text: 'Jumlah Produksi Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Jenis Ikan pada Penangkapan Trip Terakhir di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    xAxis: [{
+                            categories: ['Rajungan', 'Pari', 'Peperek Slipmouths', 'Lemuru', 'Teri'],
+                            crosshair: true
+                        }],
+                    yAxis: [{// Primary yAxis
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            },
+                            title: {
+                                text: 'Volume (Kg)',
+                                style: {
+                                    color: Highcharts.getOptions().colors[1]
+                                }
+                            }
+                        }, {// Secondary yAxis
+                            title: {
+                                text: 'Nilai (000 Rp)',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    color: Highcharts.getOptions().colors[0]
+                                }
+                            },
+                            opposite: true
+                        },
+                        , {// Third yAxis
+                            title: {
+                                text: 'Rata-Rata Nilai per Kg (Rp)',
+                                style: {
+                                    color: Highcharts.getOptions().colors[2]
+                                }
+                            },
+                            labels: {
+                                format: '{value}',
+                                style: {
+                                    color: Highcharts.getOptions().colors[2]
+                                }
+                            },
+                            opposite: true
+                        }],
+                    tooltip: {
+                        shared: true
+                    },
+                    legend: {
+                        layout: 'vertical',
+                        align: 'left',
+                        x: 120,
+                        verticalAlign: 'top',
+                        y: 100,
+                        floating: true,
+                        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: 'Volume(kg)',
+                            type: 'column',
+                            yAxis: 1,
+                            data: [8465.1, 8271.2, 6863.7, 4616.0, 3263.8]
+
+
+                        }, {
+                            name: 'Nilai (000 Rp)',
+                            type: 'column',
+                            data: [483335, 89214, 14590, 36470, 33148]
+
+                        }, {
+                            name: 'Rata-Rata Nilai per Kg (Rp)',
+                            type: 'column',
+                            data: [57097, 10786, 2126, 7901, 10156]
+                        }]
+                });
+                //chart511
+                $('#chart511').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Unit Usaha Perikanan Tangkap Laut Menurut Sarana Angkutan Utama yang Digunakan untuk Pengangkutan Hasil Tangkapan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Sarana Angkutan",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Tenaga Manusia",
+                                    y: 71.20
+                                }, {
+                                    name: "Tidak Menggunakan Angkutan",
+                                    y: 8.40,
+                                    sliced: true
+
+                                }, {
+                                    name: "Kendaraan Bermotor",
+                                    y: 5.80
+                                }, {
+                                    name: "Kendaraan Tidak Bermotor",
+                                    y: 11.70
+                                }, {
+                                    name: "Lainnya",
+                                    y: 2.90
+                                }
+                            ]
+                        }]
+                });
+//chart521
+                $('#chart521').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Produksi Unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Distribusi Hasil Tangkapan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Distribusi Hasil Tangkapan",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Dijual/Transaksi di Laut",
+                                    y: 1.57
+                                }, {
+                                    name: "Dijual/Transaksi di Darat",
+                                    y: 96.66,
+                                    sliced: true
+
+                                }, {
+                                    name: "Dikonsumsi Sendiri",
+                                    y: 0.96
+                                }, {
+                                    name: "Dibagikan ke Awak Kapal",
+                                    y: 0.51
+                                }, {
+                                    name: "Lainnya (Tercecer, Rusak, Hilang, dll)",
+                                    y: 0.30
+                                }
+                            ]
+                        }]
+                });
+                //chart522
+
+                $('#chart522').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase unit Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Tempat Penjualan Hasil Tangkapan Terbanyak di Darat di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Tempat Penjualan Hasil Tangkapan",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "TPI/PPI/PP/Tangkahan",
+                                    y: 1.90
+                                }, {
+                                    name: "Eksportir",
+                                    y: 2.10
+                                }, {
+                                    name: "Industri Pengolahan",
+                                    y: 12.00
+                                }, {
+                                    name: "Pedagang",
+                                    y: 81.70,
+                                    sliced: true
+                                }, {
+                                    name: "Langsung Kepada Konsumen",
+                                    y: 2.00
+                                }, {
+                                    name: "Lainnya )",
+                                    y: 0.30
+                                }
+                            ]
+                        }]
+                });
+                //chart531
+
+                $('#chart531').highcharts({
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Persentase Usaha Rumah Tangga Perikanan Tangkap Laut Menurut Penyebab Utama Kesulitan dalam Pemasaran Ikan di Kabupaten Cirebon Provinsi Jawa Barat Tahun 2015'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true
+                        }
+                    }, credits: {
+                        enabled: false
+                    },
+                    series: [{
+                            name: "Penyebab Sulitnya Pemasaran",
+                            colorByPoint: true,
+                            data: [{
+                                    name: "Sarana angkutan terbatas",
+                                    y: 3.30
+                                }, {
+                                    name: "Kualitas Rendah",
+                                    y: 5.80
+                                }, {
+                                    name: "Produk Melimpah",
+                                    y: 18.50
+                                }, {
+                                    name: "Harga Jual Rendah",
+                                    y: 66.40,
+                                    sliced: true
+                                }, {
+                                    name: "Lainnya )",
+                                    y: 6.10
+                                }
+                            ]
+                        }]
+                });
+
+
+            });
+
+        </script>
+    </head>
+    <body> 
+        <script src="js/highcharts.js"></script>
+        <script src="js/modules/exporting.js"></script>
+        
+        <!-- BEGAIN PRELOADER -->
+        <div id="preloader">
+            <div id="status">&nbsp;</div>
+        </div>
+        <!-- END PRELOADER -->
+
+
+        </div>
+        <a style="display: block;" class="scrollToTop" href="#"><i class="fa fa-angle-up"></i></a>
+
+        <div class="menu_area">
+            <nav class="navbar navbar-default navbar-fixed-top past-main" role="navigation" style="background: rgba(0, 0, 0, 0.8); margin-top:0;">  
+                <div class="container">
+                    <div class="navbar-header">
+                        <!-- FOR MOBILE VIEW COLLAPSED BUTTON -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                        <!-- LOGO -->
+
+                        <!-- TEXT BASED LOGO -->
+                        <a class="navbar-brand" href="#">Single<span>Pro</span></a>
+
+                        <!-- IMG BASED LOGO  -->
+                        <!--  <a class="navbar-brand" href="#"><img src="img/logo.png" alt="logo"></a> --> 
+
+
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse" >
+                        <ul id="top-menu" class="nav navbar-nav navbar-right main_nav">
+                            <li class=""><a href="#">Home</a></li>
+
+                            <li><a href="#works">Sukabumi</a></li> 
+                            <li><a href="#team" class="active">Cirebon</a></li> 
+                            <li><a href="#pricing">Indramayu</a></li> 
+                            <li><a href="#blog">Bandung</a></li>               
+
+                        </ul>           
+                    </div><!--/.nav-collapse -->
+                </div>     
+            </nav>  
+        </div>
+        <!--=========== BEGAIN TEAM SECTION ================-->
+        <section id="team">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <!-- BEGAIN ABOUT HEADING -->
+                        <div class="heading">
+                            <h2 class="wow fadeInLeftBig">Analisis Deskriptif</h2>            
+                        </div>
+                        <div class="team_area">
+                            <!-- BEGAIN TEAM SLIDER -->
+                            <!--<div class="team_slider">-->  
+                            <!-- BEGAIN SINGLE TEAM SLIDE#1 -->              
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5 class="">Jamie Sidens</h5>
+                                    <span>Founder</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+                                    <div data-toggle="modal" data-target="#modal1"> 
+                                        <a href="#" class="btn btn-sm animated-button thar-three">Lihat Grafik</a> 
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <!-- BEGAIN SINGLE TEAM SLIDE#2 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5>Jamie Sidens</h5>
+                                    <span>CMS Developer</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+
+                                </div>
+                            </div>
+                            <!-- BEGAIN SINGLE TEAM SLIDE#3 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5>Jamie Sidens</h5>
+                                    <span>Manager</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+                                    <div class="team_social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- BEGAIN SINGLE TEAM SLIDE#4 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5>Jamie Sidens</h5>
+                                    <span>Developer</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+                                    <div class="team_social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- BEGAIN SINGLE TEAM SLIDE#5 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5>Jamie Sidens</h5>
+                                    <span>Programmer</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+                                    <div class="team_social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- BEGAIN SINGLE TEAM SLIDE#6 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5>Jamie Sidens</h5>
+                                    <span>Web Designer</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+                                    <div class="team_social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- BEGAIN SINGLE TEAM SLIDE#7 -->
+                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                <div class="single_team wow fadeInUp">
+                                    <div class="team_img">
+                                        <img src="img/team-1.jpg" alt="img">
+                                    </div>
+                                    <h5>Jone Doe</h5>
+                                    <span>Marketing Head</span>                        
+                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature</p>
+                                    <div class="team_social">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    </div>
+                                </div>
+                            </div>                              
+                            <!--          </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=========== END TEAM SECTION ================-->
+
+
+
+        <!--=========== BEGAIN FOOTER ================-->
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer_left">
+                            <p>Copyright &copy; 2015 <a href="http://www.wpfreeware.com">WpFreeware</a>. All Rights Reserved</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="footer_right">
+                            <ul class="social_nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--=========== END FOOTER ================-->
+
+
+        <!--=====================Modals===============-->
+
+        <div id="popup-modal" class="row">  <!-- Modal -->
+            <div id="modal1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" >
+                <div class="container">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Modal title</h4>
+                            </div>
+                            <div class="modal-body">
+                             <div>MODAL POPUP CONTENT .....MODAL POPUP CONTENT ....</div>
+
+                                <div id="chart41" style="min-width: 310px; height: 400px; max-width: 600px; margin: 5px auto"></div>
+        <div id="chart511" style="min-width: 310px; height: 400px; max-width: 600px; margin: 5px auto"></div>
+        <div id="chart521" style="min-width: 310px; height: 400px; max-width: 600px; margin: 5px auto"></div>
+                            
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+            </div>
+            <!-- /.modal -->
+        </div>
+
+
+
+        <!--================================End Modals=============================-->
+        <!-- Javascript Files
+        ================================================== -->
+
+        <!-- Google map -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <script src="js/jquery.ui.map.js"></script>
+        <!-- For smooth animatin  -->
+        <script src="js/wow.min.js"></script> 
+        <!-- Bootstrap js -->
+        <script src="js/bootstrap.min.js"></script>
+        <!-- superslides slider -->
+        <script src="js/jquery.superslides.min.js" type="text/javascript"></script>
+        <!-- slick slider -->
+        <script src="js/slick.min.js"></script>    
+        <!-- for circle counter -->
+        <script src='https://cdn.rawgit.com/pguso/jquery-plugin-circliful/master/js/jquery.circliful.min.js'></script>
+        <!-- for portfolio filter gallery -->
+        <script src="js/modernizr.custom.js"></script>
+        <script src="js/classie.js"></script>
+        <script src="js/elastic_grid.min.js"></script>
+        <script src="js/portfolio_slider.js"></script>
+
+        <!-- Custom js-->
+        <script src="js/custom.js"></script>
+
+    </body>
+</html>
